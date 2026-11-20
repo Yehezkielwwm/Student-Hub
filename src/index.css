@@ -1,0 +1,182 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #f1f3f6;
+  --surface-3: #e9ecf1;
+  --border: #e4e7ec;
+  --border-strong: #d3d8e0;
+  --ink: #14161a;
+  --muted: #667085;
+  --muted-2: #98a2b3;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-soft: #eef0ff;
+  --accent-ink: #ffffff;
+  --success: #12805c;
+  --success-soft: #e7f7f0;
+  --warning: #b45309;
+  --warning-soft: #fef4e6;
+  --danger: #d92d20;
+  --danger-soft: #fef0ef;
+  --ring: rgba(79, 70, 229, 0.28);
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-md: 0 12px 32px -16px rgba(16, 24, 40, 0.18);
+  --shadow-lg: 0 28px 60px -24px rgba(16, 24, 40, 0.28);
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: #090a0d;
+  --surface: #111318;
+  --surface-2: #171a21;
+  --surface-3: #1e222b;
+  --border: #232733;
+  --border-strong: #313747;
+  --ink: #f2f4f8;
+  --muted: #98a2b3;
+  --muted-2: #6b7486;
+  --accent: #7c83ff;
+  --accent-hover: #9aa0ff;
+  --accent-soft: #1b1d3a;
+  --accent-ink: #0b0c16;
+  --success: #4ade9d;
+  --success-soft: #0e2a22;
+  --warning: #f5b45c;
+  --warning-soft: #2b2113;
+  --danger: #ff8b84;
+  --danger-soft: #2c1514;
+  --ring: rgba(124, 131, 255, 0.35);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 16px 40px -20px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 32px 70px -24px rgba(0, 0, 0, 0.8);
+}
+
+@theme inline {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --radius-4xl: 1.75rem;
+  --shadow-soft: var(--shadow-sm);
+  --shadow-card: var(--shadow-md);
+  --shadow-float: var(--shadow-lg);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  input[type='color'] {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    padding: 0;
+    background: transparent;
+  }
+  input[type='color']::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  input[type='color']::-webkit-color-swatch {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-2);
+    background-clip: padding-box;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes live-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(18, 128, 92, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(18, 128, 92, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(18, 128, 92, 0);
+  }
+}
+
+.live-dot {
+  animation: live-ring 2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
